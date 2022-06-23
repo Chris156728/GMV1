@@ -36,7 +36,8 @@ export default function Login(props) {
 	// If not connected, display the connect button.
 	if(!props.connected) {
 		if(window.ethereum){
-			return <button className="login" onClick={DoConnect}>Connect Wallet</button>;
+			DoConnect();
+			//return <button className="login" onClick={DoConnect}>Connect Wallet</button>;
 		} else {
 			return <a href={metamaskAppDeepLink}><button className="login">Connect Wallet</button></a>;
 		}			
