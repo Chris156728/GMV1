@@ -26,10 +26,10 @@ function App() {
 			setWeb3Props({ web3, accounts, contract });
 		}
 	}
-
+const homepage = window.location.href;
 const chainChangedHandler = () => {
 		// reload the page to avoid any errors with chain change mid use of application
-		window.location.reload();
+		window.location.assign(homepage);
 	}
 if(window.ethereum){
 	window.ethereum.on('chainChanged', chainChangedHandler);
