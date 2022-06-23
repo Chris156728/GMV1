@@ -27,6 +27,12 @@ function App() {
 		}
 	}
 
+const chainChangedHandler = () => {
+		// reload the page to avoid any errors with chain change mid use of application
+		window.location.reload();
+	}
+window.ethereum.on('chainChanged', chainChangedHandler);
+window.ethereum.on('accountsChanged', chainChangedHandler);	
 function isMobileDevice() {
  
   return 'ontouchstart' in window || 'onmsgesturechange' in window;
