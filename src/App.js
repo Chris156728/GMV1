@@ -31,9 +31,34 @@ const chainChangedHandler = () => {
 		// reload the page to avoid any errors with chain change mid use of application
 		window.location.assign(homepage);
 	}
+
+const checkNetwork = async () => {
+  if (window.ethereum) {
+    const currentChainId = await window.ethereum.request({
+      method: 'eth_chainId',
+    });
+	console.log(currentChainId)
+    // return true if network id is the same
+    if (currentChainId != targetNetworkId) return true;
+    // return false is network id is different
+    return false;
+  }
+};
+const switchNetwork = async () => {
+  await window.ethereum.request({
+    method: 'wallet_switchEthereumChain',
+    params: [{ chainId: targetNetworkId }],
+  });
+  console.log('switch');
+  // refresh
+  //window.location.reload();
+};
 if(window.ethereum){
 	window.ethereum.on('chainChanged', chainChangedHandler);
-	window.ethereum.on('accountsChanged', chainChangedHandler);	
+	window.ethereum.on('accountsChanged', chainChangedHandler);
+	if(checkNetwork()){
+		switchNetwork();
+	}
 }
 function isMobileDevice() {
  
