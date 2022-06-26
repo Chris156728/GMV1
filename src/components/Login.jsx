@@ -5,9 +5,9 @@ import ExobitsABI from '../contract/ReExoBits.json';
 
 
 export default function Login(props) {
-
+	const curr=window.location.href;
 	const contractAddress = "0x7a7b4757543987dD07936D473Ead236ebcdc4999";
-	const dappUrl = "young-paper-9976.on.fleek.co"; 
+	const dappUrl = curr.substring(8);//"young-paper-9976.on.fleek.co"; 
 			// TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
 	const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
 	const DoConnect = async () => {
